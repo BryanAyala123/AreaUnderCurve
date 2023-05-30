@@ -1,0 +1,56 @@
+def calculate_left_riemann_sum(x, y):
+    total_sum = 0.0
+    n = len(x)
+    for i in range(n - 1):
+        total_sum += y[i] * (x[i + 1] - x[i])
+    return total_sum
+
+def calculate_middle_riemann_sum(x, y):
+    total_sum = 0.0
+    n = len(x)
+    for i in range(n - 1):
+        midpoint = (x[i] + x[i + 1]) / 2.0
+        total_sum += y[i] * (x[i + 1] - x[i])
+    return total_sum
+
+def calculate_right_riemann_sum(x, y):
+    total_sum = 0.0
+    n = len(x)
+    for i in range(1, n):
+        total_sum += y[i] * (x[i] - x[i - 1])
+    return total_sum
+
+def calculate_trapezoidal_approximation(x, y):
+    total_sum = 0.0
+    n = len(x)
+    for i in range(n - 1):
+        total_sum += (y[i] + y[i + 1]) * (x[i + 1] - x[i]) / 2.0
+    return total_sum
+
+print("-------------------------------------------------------")
+print("-----------Area Under the Curve Approximator-----------")
+print("--------------------by Bryan Ayala---------------------")
+print("")
+
+x_values = input("Enter the x-values separated by spaces: ").split()
+y_values = input("Enter the y-values separated by spaces: ").split()
+
+x = [float(x_val) for x_val in x_values]
+y = [float(y_val) for y_val in y_values]
+
+method = input("Enter the desired method (left/middle/right/trapezoidal): ")
+
+if method == "left":
+    result = calculate_left_riemann_sum(x, y)
+    print("Left Riemann Sum:", result)
+elif method == "middle":
+    result = calculate_middle_riemann_sum(x, y)
+    print("Middle Riemann Sum:", result)
+elif method == "right":
+    result = calculate_right_riemann_sum(x, y)
+    print("Right Riemann Sum:", result)
+elif method == "trapezoidal":
+    result = calculate_trapezoidal_approximation(x, y)
+    print("Trapezoidal Approximation:", result)
+else:
+    print("Invalid method entered.")
